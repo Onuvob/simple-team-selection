@@ -19,7 +19,7 @@ const students = [
     },
     {
         'id': 4,
-        'name' : 'Superman',
+        'name' : 'Captain America',
         'games': ['Tennis', 'Football', 'Billiard', 'Smash'],
         'selected': false
     },
@@ -49,7 +49,7 @@ const students = [
     },
     {
         'id': 9,
-        'name' : 'Electro',
+        'name' : 'Thanos',
         'games': ['Tennis', 'Football', 'Billiard'],
         'selected': false
     }

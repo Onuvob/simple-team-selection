@@ -4,14 +4,14 @@
 
         <div>
 
-            <h1>Students</h1>
+            <h1>Heros = Total is {{ totalHeros }}</h1>
 
             <ul>
                 <li :key="student.id" v-for="(student, index) in students">
                     {{ student.name }} | 
                     <i>{{student.games.length}} games he playes</i>
-                    <button @click="addTeamMember('A', index)">Team A</button>
-                    <button @click="addTeamMember('B', index)">Team B</button>
+                    <button :disabled="student.selected" @click="addTeamMember({ type:'A', index})">Team A</button>
+                    <button :disabled="student.selected" @click="addTeamMember({ type:'B', index})">Team B</button>
                 </li>
             </ul>
             
@@ -32,8 +32,9 @@
 
 <script>
 
-import store from '../store';
+//import store from '../store';
 import TeamComponent from './TeamComponent';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default
 {
@@ -44,23 +45,28 @@ export default
 
     computed:
     {
-        students()
-        {
-            return store.state.students
-        }
+        // students()
+        // {
+        //     return this.$store.state.students
+        // }
+        ...mapState(["students"]),
+        ...mapGetters(["totalHeros"])
     },
 
     methods:
     {
-        addTeamMember(type, index)
-        {
-            store.dispatch('addTeamMember', {type, index});
-        }
+        // addTeamMember(type, index)
+        // {
+        //     this.$store.dispatch('addTeamMember', {type, index});
+        // }
+
+        ...mapActions(["addTeamMember"])
+
     },
 
     created()
     {
-        store.dispatch('getStudents')
+        this.$store.dispatch('getStudents')
     }
 
 }
